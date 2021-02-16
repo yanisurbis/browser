@@ -11,7 +11,7 @@
                  [dk.ative/docjure "1.14.0"]
                  [cheshire "5.10.0"]
                  [org.clojure/core.async "1.3.610"]
-                 [clojurewerkz/elastisch "3.0.1"]
+                 [cc.qbits/spandex "0.7.6"]
                  ;; for reveal
                  [nrepl,"0.8.3"]
                  [clj-kondo,"2020.04.05"]]

@@ -1,3 +1,4 @@
+# https://github.com/ElasticHQ/elasticsearch-HQ/blob/master/example/docker-compose-local-dev.yml
 version: '2.2'
 services:
   mongo:
@@ -12,7 +13,19 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
     container_name: elasticsearch
     environment:
-      - "discovery.type=single-node"
+#      - cluster.name=elasticsearch
+#      - node.name=node_1
+#      - network.host=0.0.0.0
+#      - network.publish_host=0.0.0.0
+#      - bootstrap.memory_lock=true
+#      - http.cors.enabled=false
+#      - http.cors.allow-origin=*
+#      - http.host=0.0.0.0
+#      - transport.host=0.0.0.0
+#      - bootstrap.system_call_filter=false
+#      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - xpack.security.enabled=false
+      - discovery.type=single-node
     volumes:
       - /data/liked/elastic
     ports:
