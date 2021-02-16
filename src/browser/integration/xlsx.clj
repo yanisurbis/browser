@@ -12,7 +12,7 @@
       (clojure.string/split  #"/")
       last))
 
-(def tweet-urls (->> (ss/load-workbook "./resources/tweets1.xlsx")
-                     (ss/select-sheet "Sheet1")
-                     (ss/select-columns {:E :tweet-url})
-                     (map (comp tweet-url->tweet-id :tweet-url))))
+(def tweet-ids (->> (ss/load-workbook "./resources/tweets1.xlsx")
+                    (ss/select-sheet "Sheet1")
+                    (ss/select-columns {:E :tweet-url})
+                    (map (comp tweet-url->tweet-id :tweet-url))))

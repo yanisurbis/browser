@@ -19,6 +19,7 @@
 (def url-twitter-auth "https://api.twitter.com/oauth2/token")
 (def url-favorite-tweets "https://api.twitter.com/1.1/favorites/list.json")
 (def url-tweets "https://api.twitter.com/1.1/statuses/lookup.json")
+(def url-tweetsv2 "https://api.twitter.com/1.1/statuses/lookup.json")
 (def url-users "https://api.twitter.com/1.1/users/lookup.json")
 
 (def twitter-access-token-secret (:twitter-access-token-secret env))
@@ -78,6 +79,8 @@
                :as            :json-strict
                :cookie-policy :none}))
 
+#_(fetch-detailed-tweets (take 2 browser.integration.xlsx/tweet-ids))
+
 ;;
 
 (defn fetch-user [{:keys [user-id]}]
@@ -88,6 +91,19 @@
         :cookie-policy :none}
        (client/get url-users)
        :body))
+
+;;
+
+(defn fetch-detailed-tweets-v2 [{:keys [ids]}]
+  (client/get "https://api.twitter.com/2/tweets"
+              {:headers       {"Authorization" (str "Bearer " token)}
+               :query-params  {"ids" (clojure.string/join "," ids)
+                               "tweet.fields" "created_at"
+                               "expansions" "author_id"}
+               :as            :json-strict
+               :cookie-policy :none}))
+
+;;(fetch-detailed-tweets-v2 {:ids (take 2 browser.integration.xlsx/tweet-ids)})
 
 ;;
 
