@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Leiningen: congomongo:2.2.1">
-    <CLASSES>
-      <root url="jar://$USER_HOME$/.m2/repository/congomongo/congomongo/2.2.1/congomongo-2.2.1.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
