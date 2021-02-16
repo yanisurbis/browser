@@ -1,17 +1,39 @@
-mongo:
-  image: mongo:4.2.6
-  container_name: mongodb
-  volumes:
-    - /data/liked/mongo
-  ports:
-    - 27017:27017
+version: '2.2'
+services:
+  mongo:
+    image: mongo:4.2.6
+    container_name: mongodb
+    volumes:
+      - /data/liked/mongo
+    ports:
+      - 27017:27017
 
-elastic:
-  image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
-  container_name: elasticsearch
-  environment:
-    - "discovery.type=single-node"
-  volumes:
-    - /data/liked/elastic
-  ports:
-    - 9200:9200
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
+    container_name: elasticsearch
+    environment:
+      - "discovery.type=single-node"
+    volumes:
+      - /data/liked/elastic
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - elastic
+
+  elastic-hq:
+    image: elastichq/elasticsearch-hq
+    container_name: elasticsearch-hq
+    environment:
+      - HQ_DEFAULT_URL=http://elasticsearch:9200
+      - HQ_DEBUG=True
+      - HQ_ENABLE_SSL=True
+      - HQ_VERIFY_CERTS=False
+    ports:
+      - 5000:5000
+    networks:
+      - elastic
+
+networks:
+  elastic:
+    driver: bridge
