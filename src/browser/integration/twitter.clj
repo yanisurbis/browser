@@ -23,14 +23,16 @@
 
 (def twitter-access-token-secret (:twitter-access-token-secret env))
 (def twitter-access-token (:twitter-access-token env))
+(def bearer-token (:bearer-token env))
+(def token bearer-token)
 
-(def token (-> (client/post url-twitter-auth
-                            {:basic-auth    [twitter-access-token twitter-access-token-secret]
-                             :form-params   {"grant_type" "client_credentials"}
-                             :cookie-policy :none
-                             :as            :json-strict})
-               :body
-               :access_token))
+#_(def token (-> (client/post url-twitter-auth
+                              {:basic-auth    [twitter-access-token twitter-access-token-secret]
+                               :form-params   {"grant_type" "client_credentials"}
+                               :cookie-policy :none
+                               :as            :json-strict})
+                 :body
+                 :access_token))
 
 ;;
 

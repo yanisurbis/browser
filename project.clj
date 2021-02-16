@@ -8,5 +8,6 @@
                  [camel-snake-kebab "0.4.2"]
                  [environ "1.2.0"]
                  [clj-http "3.12.0"]
+                 [cheshire "5.10.0"]
                  [clojurewerkz/elastisch "3.0.1"]]
   :repl-options {:init-ns browser.core})
